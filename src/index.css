@@ -3,14 +3,14 @@
 @theme {
   --color-dark: #fff;
   --color-light: #222;
-  --color-primary: blue;
+  --color-primary: #4a4a7d;
   --color-accent: #111;
   --color-red: #f00;
 }
 .dark {
   --color-dark: #222;
   --color-light: #ffffff;
-  --color-primary: blue;
+  --color-primary: #4a4a7d;
   --color-accent: #ddd;
   --color-red: #f00;
 }

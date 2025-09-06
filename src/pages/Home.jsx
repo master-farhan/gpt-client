@@ -3,13 +3,17 @@ import Sidebar from "../components/Sidebar";
 import TopBar from "../components/TopBar";
 import MessageList from "../components/MessageList";
 import ChatInput from "../components/ChatInput";
+import { useChat } from "../context/ChatContext"; // 👈 import context
 
 const Home = () => {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "light"
   );
+  const [isSidebar, setIsSidebar] = useState(false);
+  const messagesEndRef = useRef(null);
 
-  const [isSidebar, setIsSidebar] = useState(false)
+  const { chats, setChats, messages, sendMessage, currentChat, setCurrentChat } =
+    useChat(); // 👈 get context values
 
   useEffect(() => {
     const body = document.documentElement;
@@ -20,34 +24,34 @@ const Home = () => {
 
   const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
 
-  const [chats] = useState([
-    { id: 1, title: "Chat with AI" },
-    { id: 2, title: "Project Ideas" },
-    { id: 3, title: "Study Plan" },
-  ]);
-
-  const [messages, setMessages] = useState([
-    { sender: "user", text: "Hello! How can I help you today?" },
-    { sender: "ai", text: "Hi there! I’m your AI assistant." },
-  ]);
-
   const [input, setInput] = useState("");
-  const messagesEndRef = useRef(null);
 
   const handleSend = () => {
     if (!input.trim()) return;
-    setMessages([...messages, { sender: "user", text: input }]);
+    sendMessage(input); 
     setInput("");
   };
 
   return (
-    <div className="h-screen w-full flex bg-light text-dark justify-center transition-colors">
+    <div className="h-screen w-full flex items-center justify-center bg-light text-dark transition-colors">
       {/* Sidebar */}
-      <Sidebar isSidebar={isSidebar} setIsSidebar={setIsSidebar} chats={chats} />
+      <Sidebar
+        isSidebar={isSidebar}
+        setIsSidebar={setIsSidebar}
+        chats={chats}
+        setChats={setChats}
+        currentChat={currentChat}
+        setCurrentChat={setCurrentChat}
+      />
 
       {/* Chat Section */}
-      <main className="relative h-full md:w-full w-10/12 flex flex-col items-center">
-        <TopBar isSidebar={isSidebar} setIsSidebar={setIsSidebar} theme={theme} toggleTheme={toggleTheme} />
+      <main className="relative h-full md:w-full w-10/12 flex flex-col items-center justify-center">
+        <TopBar
+          isSidebar={isSidebar}
+          setIsSidebar={setIsSidebar}
+          theme={theme}
+          toggleTheme={toggleTheme}
+        />
         <MessageList messages={messages} messagesEndRef={messagesEndRef} />
         <ChatInput input={input} setInput={setInput} handleSend={handleSend} />
       </main>
