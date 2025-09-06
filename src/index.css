@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark: #fff;
+  --color-light: #222;
+  --color-primary: blue;
+  --color-accent: #111;
+  --color-red: #f00;
+}
+.dark {
+  --color-dark: #222;
+  --color-light: #ffffff;
+  --color-primary: blue;
+  --color-accent: #eee;
+  --color-red: #f00;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--color-dark) !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  box-shadow: 0 0 0px 1000px var(--color-light) inset !important;
+  background-clip: padding-box !important;
+  caret-color: var(--color-dark) !important;
+}
+
+.scroll-hidden::-webkit-scrollbar{
+  display: none;
+}
