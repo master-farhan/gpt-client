@@ -4,9 +4,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const ChatContext = createContext();
-const SOCKET_URL = "http://localhost:3000";
+const SOCKET_URL = "https://gpt-0-09.onrender.com";
 
-axios.defaults.baseURL = "http://localhost:3000/api";
+axios.defaults.baseURL = "https://gpt-0-09.onrender.com/api";
 axios.defaults.withCredentials = true;
 axios.defaults.headers["Content-Type"] = "application/json";
 
