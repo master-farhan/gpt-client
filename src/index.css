@@ -9,11 +9,11 @@
   --color-red: #f00;
 }
 .dark {
-  --color-dark: #041143;
-  --color-secondary: #323548;
-  --color-light: #e6e3fe;
-  --color-primary: #3478d8;
-  --color-accent: #bdc3ef;
+  --color-dark: #0a193a;
+  --color-secondary: #d5d7df;
+  --color-light: #ffffff;
+  --color-primary: #263e5e;
+  --color-accent: #d5d7df;
   --color-red: #f00;
 }
 

@@ -51,7 +51,7 @@ const Register = () => {
                 })}
                 type="text"
                 autoComplete="off"
-                className="input w-full px-4 py-2 rounded-lg border border-accent bg-light/80 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="input w-full px-4 py-2 rounded-lg border border-secondary bg-light/80 focus:outline-none focus:ring-2 focus:ring-primary"
               />
               {errors.firstName && (
                 <span className="text-red-500 text-sm mt-1 block">
@@ -68,7 +68,7 @@ const Register = () => {
                 {...register("lastName", { required: "Last name is required" })}
                 type="text"
                 autoComplete="off"
-                className="input w-full px-4 py-2 rounded-lg border border-accent bg-light/80 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="input w-full px-4 py-2 rounded-lg border border-secondary bg-light/80 focus:outline-none focus:ring-2 focus:ring-primary"
               />
               {errors.lastName && (
                 <span className="text-red-500 text-sm mt-1 block">
@@ -89,7 +89,7 @@ const Register = () => {
               })}
               type="email"
               autoComplete="off"
-              className="input w-full px-4 py-2 rounded-lg border border-accent bg-light/80 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="input w-full px-4 py-2 rounded-lg border border-secondary bg-light/80 focus:outline-none focus:ring-2 focus:ring-primary"
             />
             {errors.email && (
               <span className="text-red-500 text-sm mt-1 block">
@@ -109,7 +109,7 @@ const Register = () => {
               })}
               type="password"
               autoComplete="off"
-              className="input w-full px-4 py-2 rounded-lg border border-accent bg-light/80 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="input w-full px-4 py-2 rounded-lg border border-secondary bg-light/80 focus:outline-none focus:ring-2 focus:ring-primary"
             />
             {errors.password && (
               <span className="text-red-500 text-sm mt-1 block">
@@ -125,6 +125,17 @@ const Register = () => {
             {isSubmitting ? "Registering..." : "Register"}
           </button>
         </form>
+
+        {/* 🔹 Add Login link */}
+        <p className="text-center text-sm text-gray-500 mt-4">
+          Already have an account?{" "}
+          <button
+            onClick={() => navigate("/login")}
+            className="text-indigo-600 hover:underline font-medium"
+          >
+            Login
+          </button>
+        </p>
       </div>
     </div>
   );

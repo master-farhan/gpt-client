@@ -51,7 +51,7 @@ const Login = () => {
               })}
               type="email"
               autoComplete="off"
-              className="input w-full px-4 py-2 rounded-lg border border-accent bg-light/80 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="input w-full px-4 py-2 rounded-lg border border-secondary bg-light/80 focus:outline-none focus:ring-2 focus:ring-primary"
             />
             {errors.email && (
               <span className="text-red text-sm mt-1 block">
@@ -68,7 +68,7 @@ const Login = () => {
               {...register("password", { required: "Password is required" })}
               type="password"
               autoComplete="off"
-              className="input w-full px-4 py-2 rounded-lg border border-accent bg-light/80 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="input w-full px-4 py-2 rounded-lg border border-secondary bg-light/80 focus:outline-none focus:ring-2 focus:ring-primary"
             />
             {errors.password && (
               <span className="text-red-500 text-sm mt-1 block">
@@ -84,6 +84,17 @@ const Login = () => {
             {isSubmitting ? "Logging in..." : "Login"}
           </button>
         </form>
+
+        {/* 🔹 Add Register link */}
+        <p className="text-center text-sm text-gray-500 mt-4">
+          Don’t have an account?{" "}
+          <button
+            onClick={() => navigate("/register")}
+            className="text-indigo-600 hover:underline font-medium"
+          >
+            Register
+          </button>
+        </p>
       </div>
     </div>
   );
