@@ -17,7 +17,7 @@ const ChatInput = ({ input, setInput }) => {
   };
 
   return (
-    <div className="flex items-center gap-2 bg-dark/10 text-dark rounded-full lg:w-160 w-10/12 sm:w-110 border transition-colors p-1 fixed bottom-10">
+    <div className="flex items-center gap-2 bg-secondary text-dark rounded-full lg:w-180 w-10/12 sm:w-110 border transition-colors p-1 fixed bottom-10 shadow-[1px_1px_5px_var(--color-light)_inset] z-20">
       <input
         type="text"
         value={input}

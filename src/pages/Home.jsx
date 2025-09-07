@@ -12,8 +12,14 @@ const Home = () => {
   const [isSidebar, setIsSidebar] = useState(false);
   const messagesEndRef = useRef(null);
 
-  const { chats, setChats, messages, sendMessage, currentChat, setCurrentChat } =
-    useChat(); // 👈 get context values
+  const {
+    chats,
+    setChats,
+    messages,
+    sendMessage,
+    currentChat,
+    setCurrentChat,
+  } = useChat(); // 👈 get context values
 
   useEffect(() => {
     const body = document.documentElement;
@@ -28,12 +34,12 @@ const Home = () => {
 
   const handleSend = () => {
     if (!input.trim()) return;
-    sendMessage(input); 
+    sendMessage(input);
     setInput("");
   };
 
   return (
-    <div className="h-screen w-full flex items-center justify-center bg-light text-dark transition-colors">
+    <div className="relative h-screen w-full flex items-center justify-center  bg-light text-dark transition-colors">
       {/* Sidebar */}
       <Sidebar
         isSidebar={isSidebar}
@@ -55,6 +61,8 @@ const Home = () => {
         <MessageList messages={messages} messagesEndRef={messagesEndRef} />
         <ChatInput input={input} setInput={setInput} handleSend={handleSend} />
       </main>
+
+      <div className="absolute bg-gradient-to-b from-light via-light/80 to-accent/20 h-20 w-screen bottom-0 left-0"></div>
     </div>
   );
 };

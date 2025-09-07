@@ -62,12 +62,12 @@ export const ChatProvider = ({ children }) => {
       // Add user's message immediately
       setMessages((prev) => [
         ...prev,
-        { role: "user", content, chat: currentChat.id },
+        { role: "user", content, chat: currentChat._id },
       ]);
 
       setLoading(true); // <--- start loading
 
-      socket.emit("ai-message", { content, chat: currentChat.id });
+      socket.emit("ai-message", { content, chat: currentChat._id });
     } catch (error) {
       console.error("Error sending message:", error);
       setLoading(false);
@@ -90,7 +90,7 @@ export const ChatProvider = ({ children }) => {
   // Load all chats
   const loadChats = async () => {
     try {
-      const { data } = await axios.post("/chat/get"); // <-- POST
+      const { data } = await axios.get("/chat/get");
       setChats(data.chats);
     } catch (error) {
       console.error("Error loading chats:", error);
@@ -120,7 +120,7 @@ export const ChatProvider = ({ children }) => {
     createChat,
     loadChats,
     loadChatMessages,
-    loading, // <--- expose loading
+    loading, 
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;

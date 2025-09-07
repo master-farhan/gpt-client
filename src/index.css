@@ -2,16 +2,18 @@
 
 @theme {
   --color-dark: #fff;
-  --color-light: #222;
+  --color-secondary: #222;
+  --color-light: #111;
   --color-primary: #4a4a7d;
-  --color-accent: #111;
+  --color-accent: #050505;
   --color-red: #f00;
 }
 .dark {
-  --color-dark: #222;
-  --color-light: #ffffff;
-  --color-primary: #4a4a7d;
-  --color-accent: #ddd;
+  --color-dark: #041143;
+  --color-secondary: #323548;
+  --color-light: #e6e3fe;
+  --color-primary: #3478d8;
+  --color-accent: #bdc3ef;
   --color-red: #f00;
 }
 
@@ -26,6 +28,29 @@
   caret-color: var(--color-dark) !important;
 }
 
-.scroll-hidden::-webkit-scrollbar{
+.scroll-hidden::-webkit-scrollbar {
   display: none;
+}
+
+@keyframes typing {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.dot {
+  animation: typing 1s infinite ease-in-out;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
 }

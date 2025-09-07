@@ -8,6 +8,7 @@ import axios from "axios";
 import { useChat } from "../context/ChatContext";
 
 const Sidebar = ({ isSidebar, setIsSidebar }) => {
+  const { setMessages } = useChat();
   const { chats, setChats, loadChats, currentChat, setCurrentChat } = useChat();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newChatTitle, setNewChatTitle] = useState("");
@@ -29,7 +30,7 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
       );
 
       const newChat = {
-        _id: response.data.chat._id, // Use _id here for consistency
+        _id: response.data.chat._id,
         title: response.data.chat.title,
       };
 
@@ -46,6 +47,14 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
     if (e.key === "Enter") handleCreateChat();
   };
 
+  const getMassages = async (chatId) => {
+    const response = await axios.get(
+      `http://localhost:3000/api/messages/${chatId}`
+    );
+
+    setMessages(response.data.messages);
+  };
+
   useEffect(() => {
     const initializeChats = async () => {
       await loadChats();
@@ -56,12 +65,12 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
 
   return (
     <aside
-      className={`sm:w-60 w-65 bg-accent transition-all flex-col p-2 space-y-4 fixed md:relative z-100 h-full ${
+      className={`sm:w-60 w-65 bg-accent transition-all flex-col p-3 space-y-4 fixed md:relative z-100 h-full ${
         isSidebar ? `-left-[100%] top-0` : "top-0 left-0"
       }`}
     >
       {/* Header */}
-      <div className="p-2 w-full flex items-center justify-between">
+      <div className="w-full flex items-center justify-between">
         <svg
           width="25"
           height="25"
@@ -110,7 +119,10 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
         {chats.map((chat, ind) => (
           <div
             key={ind}
-            onClick={() => setCurrentChat(chat)}
+            onClick={() => {
+              setCurrentChat(chat);
+              getMassages(chat._id);
+            }}
             className={`p-2 px-3 text-sm rounded-lg cursor-pointer transition ${
               currentChat?._id === chat._id ? "bg-dark/20" : "hover:bg-dark/10"
             }`}
