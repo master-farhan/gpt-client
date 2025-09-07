@@ -14,7 +14,7 @@ const Register = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/register",
+        "https://gpt-0-09.onrender.com/api/auth/register",
         data,
         {
           withCredentials: true,
