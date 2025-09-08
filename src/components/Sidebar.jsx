@@ -86,8 +86,13 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
           <span className="text-sm font-medium">
             {user?.fullName.firstName || "User"}
           </span>
-          <span className="text-xs text-gray-500">{user?.email}</span>
+          <span className="text-xs text-gray-500">
+            {user?.email?.length > 20
+              ? `${user.email.slice(0, 20)}...`
+              : user.email}
+          </span>
         </div>
+
         <button
           onClick={() => {
             logout, navigate("/login");

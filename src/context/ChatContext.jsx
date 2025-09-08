@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import io from "socket.io-client";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const ChatContext = createContext();
 const SOCKET_URL = "https://gpt-0-09.onrender.com";
@@ -11,7 +10,6 @@ axios.defaults.withCredentials = true;
 axios.defaults.headers["Content-Type"] = "application/json";
 
 export const ChatProvider = ({ children }) => {
-  const navigate = useNavigate();
   const [socket, setSocket] = useState(null);
   const [user, setUser] = useState(undefined); // undefined = not fetched yet
   const [messages, setMessages] = useState([]);
@@ -19,13 +17,6 @@ export const ChatProvider = ({ children }) => {
   const [isConnected, setIsConnected] = useState(false);
   const [currentChat, setCurrentChat] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  // Redirect to /login if user is explicitly null
-  useEffect(() => {
-    if (user === null) {
-      navigate("/login");
-    }
-  }, [user, navigate]);
 
   // Initialize Socket.IO
   useEffect(() => {
@@ -64,11 +55,13 @@ export const ChatProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get("/auth/user"); // uses cookie token
-        setUser(res.data.data); // logged-in user
+        const response = await axios.get("/auth/user");
+        const result = response.data.data;
+        if (result) {
+          setUser(result);
+        }
       } catch (error) {
-        console.error("Failed to fetch user:", error);
-        setUser(null); // triggers redirect
+        setUser(null);
       }
     };
 
@@ -124,7 +117,7 @@ export const ChatProvider = ({ children }) => {
   const logout = async () => {
     try {
       await axios.get("/auth/logout");
-      setUser(null); // triggers redirect
+      setUser(null);
       setChats([]);
       setMessages([]);
       setCurrentChat(null);

@@ -2,12 +2,15 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useChat } from "../context/ChatContext";
 
 const Login = () => {
+  const { setUser } = useChat();
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
+
     formState: { errors, isSubmitting },
   } = useForm();
 
@@ -21,8 +24,9 @@ const Login = () => {
         }
       );
 
-      const result = response.data;
+      const result = response.data.user;
       if (result) {
+        setUser(result);
         navigate("/");
       }
     } catch (err) {

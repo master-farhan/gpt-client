@@ -17,6 +17,11 @@
   --color-red: #f00;
 }
 
+html,body{
+  background: var(--color-light);
+  color: var(--color-dark);
+}
+
 .input:-webkit-autofill,
 .input:-webkit-autofill:hover,
 .input:-webkit-autofill:focus,

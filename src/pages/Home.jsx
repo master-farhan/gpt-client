@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import TopBar from "../components/TopBar";
 import MessageList from "../components/MessageList";
 import ChatInput from "../components/ChatInput";
-import { useChat } from "../context/ChatContext"; // 👈 import context
+import { useChat } from "../context/ChatContext"; 
 
 const Home = () => {
   const [theme, setTheme] = useState(
