@@ -4,7 +4,7 @@ import { LuMenu } from "react-icons/lu";
 
 const TopBar = ({ theme, toggleTheme, isSidebar, setIsSidebar }) => {
   return (
-    <div className="flex justify-between items-center w-full  rounded-b-2xl z-50 transition-colors">
+    <div className="flex justify-between items-center w-full  rounded-b-sm z-50 transition-colors border-b border-dark/5">
       <h2 className="text-lg flex items-center justify-center gap-1 py-1 md:px-2 md:mx-2 rounded-lg md:hover:bg-dark/5">
         <LuMenu
           onClick={() => setIsSidebar(!isSidebar)}

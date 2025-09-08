@@ -41,7 +41,7 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
 
   return (
     <aside
-      className={`sm:w-60 w-65 bg-accent transition-all flex flex-col p-3 space-y-4 fixed md:relative z-100 h-full ${
+      className={`sm:w-60 w-65 bg-accent border-r border-dark/5 transition-all flex flex-col p-3 space-y-4 fixed md:relative z-100 h-full ${
         isSidebar ? `max-md:-left-[100%] max-md:top-0` : "top-0 left-0"
       }`}
     >

@@ -29,7 +29,7 @@ const MessageList = ({ messagesEndRef }) => {
   };
 
   return (
-    <div className="flex-1 overflow-y-auto space-y-6 md:w-11/12 lg:w-180 w-full scroll-hidden transition-colors pt-10 pb-[40vh] mb-15">
+    <div className="flex-1 overflow-y-auto space-y-6 md:w-11/12 lg:w-180 w-full scroll-hidden transition-colors pt-10 pb-[15vh] mb-15">
       {messages.length === 0 ? (
         <div className="flex flex-col items-center justify-center text-center h-full text-dark/70">
           <FiMessageCircle className="h-15 w-15 opacity-70" />

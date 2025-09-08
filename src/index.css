@@ -2,10 +2,10 @@
 
 @theme {
   --color-dark: #fff;
-  --color-secondary: #222;
-  --color-light: #111;
+  --color-secondary: #252525;
+  --color-light: #1a1a1a;
   --color-primary: #4a4a7d;
-  --color-accent: #050505;
+  --color-accent: #111;
   --color-red: #f00;
 }
 .dark {
