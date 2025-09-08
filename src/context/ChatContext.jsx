@@ -5,6 +5,7 @@ import axios from "axios";
 const ChatContext = createContext();
 const SOCKET_URL = "https://gpt-0-09.onrender.com";
 
+// Axios default config
 axios.defaults.baseURL = "https://gpt-0-09.onrender.com/api";
 axios.defaults.withCredentials = true;
 axios.defaults.headers["Content-Type"] = "application/json";
@@ -57,14 +58,11 @@ export const ChatProvider = ({ children }) => {
       try {
         const response = await axios.get("/auth/user");
         const result = response.data.data;
-        if (result) {
-          setUser(result);
-        }
+        setUser(result || null);
       } catch (error) {
         setUser(null);
       }
     };
-
     fetchUser();
   }, []);
 
@@ -97,21 +95,28 @@ export const ChatProvider = ({ children }) => {
   const loadChats = async () => {
     try {
       const { data } = await axios.get("/chat/get");
-      setChats(data.chats);
+      const chatArray = Array.isArray(data.chats) ? data.chats : [];
+      setChats(chatArray);
+      return chatArray; // return koro jate initial chat select kora jay
     } catch (error) {
       console.error("Error loading chats:", error);
+      setChats([]);
+      return [];
     }
   };
 
-  // Load chat messages
+  // Load chat messages safely
   const loadChatMessages = async (chatId) => {
-    try {
-      const { data } = await axios.get(`/chat/${chatId}/messages`);
-      setMessages(data);
-    } catch (error) {
-      console.error("Error loading chat messages:", error);
-    }
-  };
+  try {
+    const { data } = await axios.get(`/messages/${chatId}`);
+    const msgs = Array.isArray(data) ? data : data.messages || [];
+    setMessages(msgs);
+  } catch (error) {
+    console.error("Error loading chat messages:", error);
+    setMessages([]);
+  }
+};
+
 
   // Logout user
   const logout = async () => {

@@ -7,8 +7,9 @@ const MessageList = ({ messagesEndRef }) => {
   const { messages, loading, sendMessage, currentChat } = useChat();
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, loading]);
+  messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+}, [messages, loading]);
+
 
   const examplePrompts = [
     "✨ Give me coding tips",
@@ -51,9 +52,10 @@ const MessageList = ({ messagesEndRef }) => {
         </div>
       ) : (
         <>
-          {messages.map((msg, index) => (
-            <MessageBubble key={index} sender={msg.role} text={msg.content} />
-          ))}
+          {Array.isArray(messages) &&
+            messages.map((msg, index) => (
+              <MessageBubble key={index} sender={msg.role} text={msg.content} />
+            ))}
 
           {loading && <MessageBubble sender="model" isLoading />}
 

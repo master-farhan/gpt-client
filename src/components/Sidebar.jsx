@@ -13,8 +13,8 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
     loadChatMessages,
     createChat,
     logout,
+    loadChats,
     user,
-    setUser,
   } = useChat();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,6 +27,18 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    const fetchInitialChats = async () => {
+      console.log(chats);
+      const chatsData = await loadChats();
+      if (chatsData.length > 0) {
+        setCurrentChat(chatsData[0]);
+        loadChatMessages(chatsData[0]._id);
+      }
+    };
+    fetchInitialChats();
+  }, []);
+
   return (
     <aside
       className={`sm:w-60 w-65 bg-accent transition-all flex flex-col p-3 space-y-4 fixed md:relative z-100 h-full ${
@@ -34,7 +46,7 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
       }`}
     >
       <div className="w-full flex items-center justify-between">
-        <h2 className="font-bold">Chats</h2>
+        <img src="./gpt.png" className="h-6 w-6 m-1" alt="" />
         <IoClose
           onClick={() => setIsSidebar(!isSidebar)}
           className="text-2xl md:hidden block"
