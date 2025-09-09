@@ -29,10 +29,11 @@ export default defineConfig({
             type: "image/png",
           },
         ],
-        start_url: "/",
+        start_url: ".",
+        description: "ChatGPT Clone",
         display: "standalone",
         background_color: "#1a1a1a",
-        theme_color: "#fff",
+        theme_color: "#1a1a1a",
       },
       workbox: {
         runtimeCaching: [

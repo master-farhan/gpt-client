@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 // Service Worker register
 import { registerSW } from "virtual:pwa-register";
 
-registerSW({ immediate: true });
+registerSW();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
