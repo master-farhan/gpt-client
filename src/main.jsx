@@ -4,6 +4,10 @@ import App from "./App";
 import "./index.css";
 import { ChatProvider } from "./context/ChatContext";
 import { BrowserRouter } from "react-router-dom";
+// Service Worker register
+import { registerSW } from "virtual:pwa-register";
+
+registerSW({ immediate: true });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
